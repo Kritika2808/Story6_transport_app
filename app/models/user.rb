@@ -1,13 +1,14 @@
+#User Model
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
    def admin?
-   	self.isAdmin
+   	self.isAdmin?
    end
 
    def daily_user?
-   	self.isDailyUser
+   	self.isDailyUser?
    end
 end

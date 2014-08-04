@@ -12,7 +12,7 @@ root "users#index"
 
 get '/users/sign_up' => 'devise/sessions#create' , :as => :new_registration 
 
-
+get '/foo' => 'foo#bar'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

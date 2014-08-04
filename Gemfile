@@ -6,7 +6,7 @@ gem 'sass-rails', '~> 4.0.2'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'cancan'
+gem 'pundit'
 gem 'devise'
 gem 'pg'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  
+  
+  #before_action :set_user, only: [:show, :edit, :update, :destroy]
+  #authorize_resource
   # GET /users
   # GET /users.json
   def index
@@ -10,11 +12,11 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+  	p "*********************"
   end
 
   # GET /users/new
   def new
-  	authorize! :new , nil
     @user = User.new
   end
 
@@ -25,8 +27,10 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-  	authorize! :create , nil
+    p "*************************************************"
+    #authorize! :create, nil
     @user = User.new(user_params)
+    p @user
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -70,6 +74,9 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :fmno, :email, :password,:gender, :serviceline, :team, :extension_number, :address, :landmark, :mobile_no, :kin_mobile_number, :kin_name, :kin_relationship, :reporting_manager, :regular_user, :active)
+      #params.require(:user).permit(:name, :fmno, :email, :password,:gender, :serviceline, :team, :extension_number, :address, :landmark, :mobile_no, :kin_mobile_number, :kin_name, :kin_relationship, :reporting_manager, :regular_user, :active)
+    	p params
+    	params.require(:user).permit(:email, :password,:isAdmin)
+
     end
 end
