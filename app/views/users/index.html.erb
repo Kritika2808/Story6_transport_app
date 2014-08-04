@@ -1,4 +1,4 @@
-<% if can? :manage, @users %>
+
 <h1>Listing Users</h1>
 
 <table>
@@ -52,6 +52,5 @@
 </table>
 <%end%>
 <br>
-<% if can? :manage, @users %>
+
 <%= link_to 'New Profile', new_user_path %>
-<%end%>

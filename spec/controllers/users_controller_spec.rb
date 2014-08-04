@@ -26,12 +26,12 @@ describe UsersController do
   # adjust the attributes here as well.
   let(:valid_attributes) {
    
-    {:email => "admin@adhoc.com", :password=>"adminadmin", :isAdmin=>false}
+    {:email => "admin@ads.com", :password=>"adminadmin", :isAdmin=>true}
   }
 
   let(:invalid_attributes) {
 
-  	{:email => "admin@adhoc.com", :password=>""}
+  	{:email => "adhoc@ads.com", :password=>"adhocadhoc", :isAdmin=>false, :isDailyUser=>false}
   }
 
   # This should return the minimal set of values that should be in the session
@@ -40,6 +40,7 @@ describe UsersController do
   let(:valid_session) { {} }
 
   describe "GET index" do
+    
     it "assigns all users as @users" do
       user = User.create! valid_attributes
   		sign_in :user, user
@@ -48,35 +49,40 @@ describe UsersController do
     end
   end
 
-  describe "GET show" do
-    it "assigns the requested user as @user" do
+  # describe "GET show" do
+  #   it "assigns the requested user as @user" do
 
-      user = User.create! valid_attributes
-      p user
-      sign_in :user, user
-      get :show, {:id => user.id}, valid_session
-      expect(assigns(:user)).to eq(user)
-    end
-  end
+  #     user = User.create! valid_attributes
+  #     sign_in :user, user
+  #     get :show, {:id => user.id}
+  #     expect(assigns(:user)).to eq(user)
+  #   end
+  # end
 
   describe "GET new" do
     it "assigns a new user as @user" do
     	user = User.create! valid_attributes
     	sign_in :user, user
       get :new, {:email => "jiten@ads.com",:password =>"jitenjiten"}, valid_session
-      
       expect(assigns(:user)).to be_a_new(User)
+    end
+
+    it "cannot assign a new user as @user" do
+    	user = User.create! invalid_attributes
+    	sign_in :user, user
+      expect{get :new, {:email => "jiten@ads.com",:password =>"jitenjiten"}, valid_session}.to raise_error
+      
     end
   end
 
-  describe "GET edit" do
-    it "assigns the requested user as @user" do
-      user = User.create! valid_attributes
-      sign_in :user, user
-      get :edit, {:id => user.to_param}, valid_session
-      expect(assigns(:user)).to eq(user)
-    end
-  end
+  # describe "GET edit" do
+  #   it "assigns the requested user as @user" do
+  #     user = User.create! valid_attributes
+  #     sign_in :user, user
+  #     get :edit, {:id => user.to_param}, valid_session
+  #     expect(assigns(:user)).to eq(user)
+  #   end
+  # end
 
   describe "POST create" do
     describe "with valid params" do
@@ -84,22 +90,21 @@ describe UsersController do
       	signed_in_user = User.create!(:email => "jiten@ads.com",:password =>"jitenjiten" , :isAdmin => true)
      	sign_in :user, signed_in_user
         expect {
-        	begin
           post :create, {:user => valid_attributes}, valid_session
-      rescue ActiveModel::ForbiddenAttributesError => e
-      	p 333333333333
-      	p e
-      end
         }.to change(User, :count).by(1)
-      end
+    end
 
       it "assigns a newly created user as @user" do
+      	signed_in_user = User.create!(:email => "jiten@ads.com",:password =>"jitenjiten" , :isAdmin => true)
+     	sign_in :user, signed_in_user
         post :create, {:user => valid_attributes}, valid_session
         expect(assigns(:user)).to be_a(User)
         expect(assigns(:user)).to be_persisted
       end
 
       it "redirects to the created user" do
+      	signed_in_user = User.create!(:email => "jiten@ads.com",:password =>"jitenjiten" , :isAdmin => true)
+     	sign_in :user, signed_in_user
         post :create, {:user => valid_attributes}, valid_session
         expect(response).to redirect_to(User.last)
       end
@@ -107,25 +112,30 @@ describe UsersController do
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved user as @user" do
-        post :create, {:user => invalid_attributes}, valid_session
-        expect(assigns(:user)).to be_a_new(User)
+      	signed_in_user = User.create! invalid_attributes
+     	sign_in :user, signed_in_user
+        expect{post :create, {:user => valid_attributes}, valid_session}.to raise_error
       end
 
-      it "re-renders the 'new' template" do
-        post :create, {:user => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
-      end
+      # it "re-renders the 'new' template" do
+      # 	signed_in_user = User.create! invalid_attributes
+     	# sign_in :user, signed_in_user
+      #   post :create, {:user => valid_attributes}, valid_session
+      #   expect(response).to render_template("new")
+      # end
     end
   end
 
   describe "PUT update" do
     describe "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+       {:email => "jiten@ads.com",:password =>"jitenjiten" , :isAdmin => false}
       }
 
       it "updates the requested user" do
-        user = User.create! valid_attributes
+        signed_in_user = User.create! valid_attributes
+        sign_in :user, signed_in_user
+        user = User.create!(:email => "shriram@ads.com",:password =>"shriramshriram" , :isAdmin => false)
         put :update, {:id => user.to_param, :user => new_attributes}, valid_session
         user.reload
         skip("Add assertions for updated state")
@@ -165,17 +175,18 @@ describe UsersController do
 
   describe "DELETE destroy" do
     it "destroys the requested user" do
-      user = User.create! valid_attributes
-      sign_in :user, user
-      expect {
-        delete :destroy, {:id => user.to_param}, valid_session
+    signed_in_user = User.create! valid_attributes
+    sign_in :user, signed_in_user
+    user = User.create! invalid_attributes
+	expect {
+        delete :destroy, {:id => user.id}, valid_session
       }.to change(User, :count).by(-1)
     end
 
     it "redirects to the users list" do
       user = User.create! valid_attributes
       sign_in :user, user
-      delete :destroy, {:id => user.to_param}, valid_session
+      delete :destroy, {:id => user.id}, valid_session
       expect(response).to redirect_to(users_url)
     end
   end
