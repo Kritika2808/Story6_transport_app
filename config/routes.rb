@@ -1,9 +1,23 @@
 StartingPoint::Application.routes.draw do
+devise_for :users, :skip => [:registrations]
+# devise_scope :user do
+# delete "/signout" => "devise/sessions#destroy" , :as => :destroy_user_session
+# get "/signin" => "devise/sessions#new" , :as => :new_user_session
+# post "/signin" => "devise/sessions#create" ,:as => :user_session
+# end
+
+resources :users 
+#devise_for :users
+root "users#index"
+
+get '/users/sign_up' => 'devise/sessions#create' , :as => :new_registration 
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
