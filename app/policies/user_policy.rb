@@ -1,7 +1,8 @@
 class UserPolicy < ApplicationPolicy
 
   def index?
-	@user.isAdmin?||@user.isDailyUser?
+	#@user.isAdmin?||@user.isDailyUser?
+    true
   end
   def show?
   	@user.isAdmin?
