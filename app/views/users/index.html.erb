@@ -1,0 +1,56 @@
+<% if policy(@users).show? %>
+<h1>Listing Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Fmno</th>
+      <th>Gender</th>
+      <th>Serviceline</th>
+      <th>Team</th>
+      <th>Extension number</th>
+      <th>Address</th>
+      <th>Landmark</th>
+      <th>Mobile no</th>
+      <th>Kin mobile number</th>
+      <th>Kin name</th>
+      <th>Kin relationship</th>
+      <th>Reporting manager</th>
+      <th>Active</th>
+      <th>Admin</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.fmno %></td>
+        <td><%= user.gender %></td>
+        <td><%= user.serviceline %></td>
+        <td><%= user.team %></td>
+        <td><%= user.extension_number %></td>
+        <td><%= user.address %></td>
+        <td><%= user.landmark %></td>
+        <td><%= user.mobile_no %></td>
+        <td><%= user.kin_mobile_number %></td>
+        <td><%= user.kin_name %></td>
+        <td><%= user.kin_relationship %></td>
+        <td><%= user.reporting_manager %></td>
+        <td><%= user.active %></td>
+        <td><%= user.is_admin %></td>
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<%= link_to 'New Profile', new_user_path %>
+<% end %>

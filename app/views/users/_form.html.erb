@@ -1,0 +1,85 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this User from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :fmno %><br>
+    <%= f.text_field :fmno %>
+  </div>
+   <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+   <div class="field">
+    <%= f.label :password %><br>
+    <%= f.text_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :gender %><br>
+    <%= f.text_field :gender %>
+  </div>
+  <div class="field">
+    <%= f.label :serviceline %><br>
+    <%= f.text_field :serviceline %>
+  </div>
+  <div class="field">
+    <%= f.label :team %><br>
+    <%= f.text_field :team %>
+  </div>
+  <div class="field">
+    <%= f.label :extension_number %><br>
+    <%= f.text_field :extension_number %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br>
+    <%= f.text_area :address %>
+  </div>
+  <div class="field">
+    <%= f.label :landmark %><br>
+    <%= f.text_field :landmark %>
+  </div>
+  <div class="field">
+    <%= f.label :mobile_no %><br>
+    <%= f.number_field :mobile_no %>
+  </div>
+  <div class="field">
+    <%= f.label :kin_mobile_number %><br>
+    <%= f.number_field :kin_mobile_number %>
+  </div>
+  <div class="field">
+    <%= f.label :kin_name %><br>
+    <%= f.text_field :kin_name %>
+  </div>
+  <div class="field">
+    <%= f.label :kin_relationship %><br>
+    <%= f.text_field :kin_relationship %>
+  </div>
+  <div class="field">
+    <%= f.label :reporting_manager %><br>
+    <%= f.text_field :reporting_manager %>
+  </div>
+  <div class="field">
+    <%= f.label :active %><br>
+    <%= f.check_box :active %>
+  </div>
+  <div class="field">
+      <%= f.label :Admin %><br>
+      <%= f.check_box :is_admin %>
+   </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

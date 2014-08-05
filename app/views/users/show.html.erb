@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Fmno:</strong>
+  <%= @user.fmno %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @user.gender %>
+</p>
+
+<p>
+  <strong>Serviceline:</strong>
+  <%= @user.serviceline %>
+</p>
+
+<p>
+  <strong>Team:</strong>
+  <%= @user.team %>
+</p>
+
+<p>
+  <strong>Extension number:</strong>
+  <%= @user.extension_number %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @user.address %>
+</p>
+
+<p>
+  <strong>Landmark:</strong>
+  <%= @user.landmark %>
+</p>
+
+<p>
+  <strong>Mobile no:</strong>
+  <%= @user.mobile_no %>
+</p>
+
+<p>
+  <strong>Kin mobile number:</strong>
+  <%= @user.kin_mobile_number %>
+</p>
+
+<p>
+  <strong>Kin name:</strong>
+  <%= @user.kin_name %>
+</p>
+
+<p>
+  <strong>Kin relationship:</strong>
+  <%= @user.kin_relationship %>
+</p>
+
+<p>
+  <strong>Reporting manager:</strong>
+  <%= @user.reporting_manager %>
+</p>
+
+<p>
+  <strong>Admin user:</strong>
+  <%= @user.is_admin %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @user.active %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
