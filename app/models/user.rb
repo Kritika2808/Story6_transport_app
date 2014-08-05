@@ -5,10 +5,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
    def admin?
-   	self.isAdmin?
+   	self.is_admin?
    end
 
    def daily_user?
-   	self.isDailyUser?
+   	self.is_daily_user?
    end
 end

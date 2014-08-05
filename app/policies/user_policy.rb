@@ -5,11 +5,13 @@ class UserPolicy < ApplicationPolicy
     true
   end
   def show?
-  	@user.isAdmin?
-  end
-  def new?
   	@user.admin?
   end
+
+  alias_method :new?, :show?
+  # def new?
+  # 	@user.admin?
+  # end
   def edit?
   	@user.admin?
   end

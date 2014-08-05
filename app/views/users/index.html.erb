@@ -1,4 +1,4 @@
-
+<% if policy(@users).show? %>
 <h1>Listing Users</h1>
 
 <table>
@@ -17,8 +17,8 @@
       <th>Kin name</th>
       <th>Kin relationship</th>
       <th>Reporting manager</th>
-      <th>Regular user</th>
       <th>Active</th>
+      <th>Admin</th>
       <th></th>
       <th></th>
       <th></th>
@@ -41,8 +41,8 @@
         <td><%= user.kin_name %></td>
         <td><%= user.kin_relationship %></td>
         <td><%= user.reporting_manager %></td>
-        <td><%= user.regular_user %></td>
         <td><%= user.active %></td>
+        <td><%= user.is_admin %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -53,3 +53,4 @@
 <br>
 
 <%= link_to 'New Profile', new_user_path %>
+<% end %>

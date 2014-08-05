@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140803170638) do
+ActiveRecord::Schema.define(version: 20140805082348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 20140803170638) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "isAdmin"
-    t.boolean  "isDailyUser"
+    t.boolean  "is_admin"
+    t.boolean  "is_daily_user"
     t.string   "name"
     t.string   "fmno"
     t.string   "gender"
@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 20140803170638) do
     t.string   "kin_name"
     t.string   "kin_relationship"
     t.string   "reporting_manager"
-    t.boolean  "regular_user"
     t.boolean  "active"
   end
 

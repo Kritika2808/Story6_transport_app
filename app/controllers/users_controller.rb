@@ -3,25 +3,25 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-  	authorize User
     @users = User.all
+    authorize @users
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
-  	authorize User
+  	authorize @user
   end
 
   # GET /users/new
   def new
-  	authorize User
+    authorize User
     @user = User.new
   end
 
   # GET /users/1/edit
   def edit
-  	authorize User
+  	authorize @user
   end
 
   # POST /users
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-  	authorize User
+  	authorize @user
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -59,7 +59,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-  	authorize User
+  	authorize @user
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url }
@@ -75,7 +75,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :fmno, :email, :password,:gender, :serviceline, :team, :extension_number, :address, :landmark, :mobile_no, :kin_mobile_number, :kin_name, :kin_relationship, :reporting_manager, :regular_user, :active)
+      params.require(:user).permit(:name, :fmno, :email, :password,:gender, :serviceline, :team, :extension_number, :address, :landmark, :mobile_no, :kin_mobile_number, :kin_name, :kin_relationship, :reporting_manager, :active, :is_admin)
 
     end
 end

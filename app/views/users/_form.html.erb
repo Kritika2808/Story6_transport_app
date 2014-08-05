@@ -72,13 +72,13 @@
     <%= f.text_field :reporting_manager %>
   </div>
   <div class="field">
-    <%= f.label :regular_user %><br>
-    <%= f.check_box :regular_user %>
-  </div>
-  <div class="field">
     <%= f.label :active %><br>
     <%= f.check_box :active %>
   </div>
+  <div class="field">
+      <%= f.label :Admin %><br>
+      <%= f.check_box :is_admin %>
+   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
