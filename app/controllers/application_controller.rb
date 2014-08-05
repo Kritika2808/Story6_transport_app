@@ -14,16 +14,5 @@ class ApplicationController < ActionController::Base
     redirect_to(root_path)
   end
 
-  def auth_user
-      p new_user_session_url
-    begin
-      p "user_signed_in?"
-      p user_signed_in?
-      redirect_to new_user_session_path unless user_signed_in?
-    rescue e
-      p "exce[tion"
-      p e.received_message?
-      redirect_to new_user_session_path
-    end
-  end
+
 end

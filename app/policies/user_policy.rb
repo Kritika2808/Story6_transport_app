@@ -9,12 +9,10 @@ class UserPolicy < ApplicationPolicy
   end
 
   alias_method :new?, :show?
-  # def new?
+
+  # def edit?
   # 	@user.admin?
   # end
-  def edit?
-  	@user.admin?
-  end
   def create?
   	@user.admin?
   end

@@ -6,7 +6,7 @@ devise_for :users, :skip => [:registrations]
 # post "/signin" => "devise/sessions#create" ,:as => :user_session
 # end
 
-resources :users 
+resources :users, :except => [:show]
 #devise_for :users
 root "users#index"
 
