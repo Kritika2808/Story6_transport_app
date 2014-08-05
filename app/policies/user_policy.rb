@@ -4,6 +4,7 @@ class UserPolicy < ApplicationPolicy
 	#@user.isAdmin?||@user.isDailyUser?
     true
   end
+
   def show?
   	@user.admin?
   end
